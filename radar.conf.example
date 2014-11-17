@@ -1,0 +1,9 @@
+api-host=https://api.runscope.com
+threads=3
+agent-id=some-agent-id
+team-id=some-team-id
+name=some-agent-name
+timeout=20
+disconnect-timeout=5
+cafile=
+token=some-token
