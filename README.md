@@ -21,4 +21,4 @@ docker run --name runscope-agent \
 mmcc/runscope-agent"
 ```
 
-I took quite a few cues from the [Docker DataDog agent](https://github.com/DataDog/docker-dd-agent) when building this.
+I took quite a few cues from the [Docker DataDog agent](https://github.com/DataDog/docker-dd-agent) when building this, so big thanks to [DataDog](http://datadog.com).
