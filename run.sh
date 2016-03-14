@@ -28,11 +28,16 @@ else
   exit 1
 fi
 
-if [[ $TOKEN ]]; then
-  sed -i -e "s/token=.*/token=${TOKEN}/" /etc/runscope-radar/radar.conf
-else
-  echo "NAME environment variable required"
-  exit 1
+if [[ $TIMEOUT ]]; then
+  sed -i -e "s/^timeout=.*/timeout=${TIMEOUT}/" /etc/runscope-radar/radar.conf
+fi
+
+if [[ $DISCONNECT_TIMEOUT ]]; then
+  sed -i -e "s/disconnect-timeout=.*/disconnect-timeout=${DISCONNECT_TIMEOUT}/" /etc/runscope-radar/radar.conf
+fi
+
+if [[ $THREADS ]]; then
+  sed -i -e "s/threads=.*/threads=${THREADS}/" /etc/runscope-radar/radar.conf
 fi
 
 exec /usr/local/bin/runscope-radar -f /etc/runscope-radar/radar.conf
