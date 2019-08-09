@@ -18,7 +18,22 @@ docker run --name runscope-agent \
 -e TOKEN=runscope-token \
 -e AGENT_ID=agent-id \
 -e TEAM_ID=team-id \
-mmcc/runscope-agent"
+mmcc/runscope-agent
 ```
 
 I took quite a few cues from the [Docker DataDog agent](https://github.com/DataDog/docker-dd-agent) when building this, so big thanks to [DataDog](http://datadog.com).
+
+## Kubernetes deployment
+
+- Create secret
+```
+kubectl create secret generic runscope-secret \
+--from-literal=token=runscope-token \
+--from-literal=agent_id=agent-id \
+--from-literal=team_id=team-id
+```
+
+- Deploy
+```
+kubectl apply -f k8s/runscope-agent.yaml
+```

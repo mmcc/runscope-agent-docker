@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runscope-agent
+  labels:
+    app: runscope-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: runscope-agent
+  template:
+    metadata:
+      labels:
+        app: runscope-agent
+    spec:
+      containers:
+      - name: runscope-agent
+        image: mmcc/runscope-agent:latest
+        env:
+        - name: NAME
+          value: runscope-agent
+        - name: AGENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: runscope-secret
+              key: agent_id
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: runscope-secret
+              key: token
+        - name: TEAM_ID
+          valueFrom:
+            secretKeyRef:
+              name: runscope-secret
+              key: team_id
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 5m
+            memory: 5Mi
